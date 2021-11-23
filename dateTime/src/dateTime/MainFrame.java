@@ -15,11 +15,19 @@ import java.awt.BorderLayout;
 public class MainFrame {
 	private JFrame frame;
 	private JPanel panel;
+	private JPanel panel2;
 	private JButton button;
 	private JLabel label;
 	
 	public MainFrame() {
 		initialize();
+	}
+	
+	public String GetTime() {
+		DateTimeFormatter dateTimeFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String formattedDateTimeObj = localDateTime.format(dateTimeFormatObj);
+		return formattedDateTimeObj;
 	}
 	
 	public void initialize() {
@@ -35,15 +43,22 @@ public class MainFrame {
 		this.panel.setSize(new Dimension(100, 30));
 		this.frame.add(panel, BorderLayout.WEST);
 		
+		panel2 = new JPanel();
+		this.panel2.setBackground(new Color(0,255,0));
+		this.panel2.setSize(new Dimension(100, 30));
+		this.frame.add(panel2, BorderLayout.EAST);
+		
+		label = new JLabel();
+		this.panel2.add(label);
+		this.label.setText(GetTime());
+		
 		button = new JButton();
 		this.button.setText("Current Time");
 		this.button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DateTimeFormatter dateTimeFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
-				LocalDateTime localDateTime = LocalDateTime.now();
-				String formattedDateTimeObj = localDateTime.format(dateTimeFormatObj);
 				
-				System.out.println(formattedDateTimeObj);
+				
+				label.setText(GetTime());
 			}
 			
 		});
