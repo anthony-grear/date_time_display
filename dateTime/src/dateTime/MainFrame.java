@@ -1,15 +1,16 @@
 package dateTime;
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
+
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import java.awt.BorderLayout;
@@ -21,7 +22,7 @@ public class MainFrame {
 //	private JButton button;
 	private JLabel label;
 	private Timer timer;
-	private FlowLayout flowLayout; 
+	private BorderLayout borderLayout; 
 	public MainFrame() {
 		initialize();
 	}
@@ -39,21 +40,21 @@ public class MainFrame {
 		frame = new JFrame();		
 		this.frame.setTitle("Date and Time");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setSize(300,190);
+		this.frame.setSize(250,185);
 		this.frame.setLocation(950,100);
 		this.frame.setLayout(new BorderLayout());		
 
 		
 		panel2 = new JPanel();
 		this.panel2.setBackground(new Color(0,255,0));
-		flowLayout = new FlowLayout();
-		this.panel2.setLayout(this.flowLayout);
+		borderLayout = new BorderLayout();
+		this.panel2.setLayout(this.borderLayout);
 		this.frame.add(panel2, BorderLayout.CENTER);
 		
-		label = new JLabel();
+		label = new JLabel(GetTime(), SwingConstants.CENTER);
 		
-		this.panel2.add(label);
-		this.label.setText(GetTime());
+		this.panel2.add(label, BorderLayout.CENTER);
+
 		
 		
 		timer = new Timer(1000, new ActionListener() {		 
